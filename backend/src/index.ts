@@ -1,13 +1,12 @@
-import http from 'http';
+import express from 'express'
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
+const app = express ();
+const port = 4000;
+
+app.get('/', (req, res) => {
+  res.send("Hello Express!");
 });
 
-const PORT = process.env.PORT || 4000;
-
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
