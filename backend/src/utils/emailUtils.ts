@@ -20,6 +20,10 @@ exports.sendEmail = async (to: any, subject: any, text: any) => {
     });
     console.log(`Email sent: ${info.messageId}`);
   } catch (err) {
-    console.error(`Error sending email: ${err.message}`);
+    if (err instanceof Error) {
+      console.error(`Error sending email: ${err.message}`);
+    } else {
+      console.error(`Error sending email: An unknown error occurred.`);
+    }
   }
 };
