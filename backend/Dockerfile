@@ -20,5 +20,5 @@ COPY . .
 RUN npm run build
 
 #アプリケーションの起動
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/app.js"]
 
