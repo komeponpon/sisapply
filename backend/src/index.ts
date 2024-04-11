@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('./config/config');
 const companyRoutes = require('./routes/companyRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
 
