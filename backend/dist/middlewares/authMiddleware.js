@@ -1,5 +1,6 @@
 "use strict";
 const jwt = require('jsonwebtoken');
+const config = require('../config/config');
 const authMiddleware = (req, res, next) => {
     var _a;
     const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];

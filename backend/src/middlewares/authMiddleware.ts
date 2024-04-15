@@ -1,6 +1,13 @@
-const jwt = require('jsonwebtoken');
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import config from '../config/config.js';
 
-const authMiddleware = (req: { headers: { authorization: string; }; user: any; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; }, next: () => void) => {
+// ExpressのRequestインターフェースを拡張
+interface CustomRequest extends Request {
+  user?: any; // ここではany型を使用していますが、可能であればより具体的な型にすることを推奨します
+}
+
+const authMiddleware = (req: CustomRequest, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
@@ -16,4 +23,4 @@ const authMiddleware = (req: { headers: { authorization: string; }; user: any; }
   }
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;

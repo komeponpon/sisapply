@@ -1,33 +1,31 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const companyRoutes = require('./routes/companyRoutes');
-const applicationRoutes = require('./routes/applicationRoutes');
+import express from 'express';
+import mongoose from 'mongoose';
+import config from './config/config.js';
+import companyRoutes from './routes/companyRoutes.js'
+import applicationRoutes from './routes/applicationRoutes.js'
 
-
-const app = express ();
+const app = express();
 const port = 4000;
 
-//ミドルウェアの設定
+// ミドルウェアの設定
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
-//データベース接続
-mongoose.connect(config.mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('MongoDB connected'))
-  .catch((err: any) => console.log(err));
+// データベース接続
+mongoose.connect(config.mongoURI)
+.then(() => console.log('MongoDB connected'))
+.catch((err) => console.log(err));
 
-//ルーティング設定
+// ルーティング設定
 app.use('/api/companies', companyRoutes);
 app.use('/api/applications', applicationRoutes);
 
-//エラーハンドリング
-app.use((err: any, req: any, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; }, next: any) => {
+// エラーハンドリング
+app.use((err: Error, req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error(err);
   res.status(500).json({error: 'Internal Server Error'});
 });
 
-const PORT = process.env.PORT || 4000;
+
+const PORT = process.env.PORT || port;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

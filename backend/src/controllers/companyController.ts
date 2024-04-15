@@ -1,7 +1,22 @@
-const Company = require('../models/Company');
+import { Request, Response } from 'express';
+import Company from '../models/Company.js';
+
+interface CompanyRequestBody {
+  companyName: string;
+  mailAddress: string;
+  loginId: string;
+  password: string;
+}
+
+interface CompanyRequest extends Request {
+  body: CompanyRequestBody;
+  params: {
+    id: string; // MongoDB の `_id` に対応
+  };
+}
 
 // 新規会社登録
-exports.createCompany = async (req: { body: any; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; }) => {
+export const createCompany = async (req: CompanyRequest, res: Response) => {
   try {
     const company = await Company.create(req.body);
     res.status(201).json(company);
@@ -15,7 +30,7 @@ exports.createCompany = async (req: { body: any; }, res: { status: (arg0: number
 };
 
 // 会社情報の取得
-exports.getCompany = async (req: { params: { id: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; }) => {
+export const getCompany = async (req: CompanyRequest, res: Response) => {
   try {
     const company = await Company.findById(req.params.id);
     if (!company) {
@@ -32,7 +47,7 @@ exports.getCompany = async (req: { params: { id: any; }; }, res: { status: (arg0
 };
 
 // 会社情報の更新
-exports.updateCompany = async (req: { params: { id: any; }; body: any; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error: string; }): void; new(): any; }; }; }) => {
+export const updateCompany = async (req: CompanyRequest, res: Response) => {
   try {
     const company = await Company.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!company) {
@@ -49,7 +64,7 @@ exports.updateCompany = async (req: { params: { id: any; }; body: any; }, res: {
 };
 
 // 会社の削除
-exports.deleteCompany = async (req: { params: { id: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { error?: string; message?: string; }): void; new(): any; }; }; }) => {
+export const deleteCompany = async (req: CompanyRequest, res: Response) => {
   try {
     const company = await Company.findByIdAndDelete(req.params.id);
     if (!company) {
@@ -64,3 +79,5 @@ exports.deleteCompany = async (req: { params: { id: any; }; }, res: { status: (a
     }
   }
 };
+
+export default {createCompany, getCompany, updateCompany, deleteCompany};

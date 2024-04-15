@@ -8,4 +8,4 @@ const config = {
   emailFrom: 'noreply@example.com',
 };
 
-module.exports = config;
+export default config;

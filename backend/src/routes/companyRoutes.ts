@@ -1,16 +1,19 @@
-const router = express.Router();
-const companyController = require('../controllers/companyController');
+import express from 'express';
+import companyController from '../controllers/companyController.js';
+import authMiddleware from '../middlewares/authMiddleware.js';
 
-//新規会社登録
+const router = express.Router();
+
+// 新規会社登録
 router.post('/', companyController.createCompany);
 
-//会社情報の取得
+// 会社情報の取得
 router.get('/:id', authMiddleware, companyController.getCompany);
 
-//会社情報の更新
+// 会社情報の更新
 router.put('/:id', authMiddleware, companyController.updateCompany);
 
-//会社の削除
+// 会社の削除
 router.delete('/:id', authMiddleware, companyController.deleteCompany);
 
-module.exports = router;
+export default router;
