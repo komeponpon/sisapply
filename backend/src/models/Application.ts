@@ -9,7 +9,7 @@ const applicationSchema = new mongoose.Schema({
   responseStatus: {type: String, required: true},
   applyDateTime: {type: Date, required: true},
   files:[{
-    id: {type: String, requiered: true},
+    id: {type: String, required: true},
     fileType: {type: String, required: true},
     fileName: {type: String, required: true},
   }],

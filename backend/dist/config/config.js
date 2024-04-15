@@ -1,5 +1,4 @@
-"use strict";
-const config = {
+var config = {
     mongoURI: 'mongodb://localhost:27017/myapp',
     jwtSecret: 'mysecretkey',
     emailHost: 'smtp.example.com',
@@ -8,4 +7,4 @@ const config = {
     emailPassword: 'password',
     emailFrom: 'noreply@example.com',
 };
-module.exports = config;
+export default config;

@@ -4,7 +4,7 @@ import config from '../config/config.js';
 
 // ExpressのRequestインターフェースを拡張
 interface CustomRequest extends Request {
-  user?: any; // ここではany型を使用していますが、可能であればより具体的な型にすることを推奨します
+  user?: any; // ここではany型
 }
 
 const authMiddleware = (req: CustomRequest, res: Response, next: NextFunction) => {

@@ -1,10 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const applicationSchema = new mongoose_1.default.Schema({
+import mongoose from "mongoose";
+var applicationSchema = new mongoose.Schema({
     id: { type: String, required: true },
     companyId: { type: String, required: true, ref: 'Company' },
     propertyName: { type: String, required: true },
@@ -13,10 +8,10 @@ const applicationSchema = new mongoose_1.default.Schema({
     responseStatus: { type: String, required: true },
     applyDateTime: { type: Date, required: true },
     files: [{
-            id: { type: String, requiered: true },
+            id: { type: String, required: true },
             fileType: { type: String, required: true },
             fileName: { type: String, required: true },
         }],
 });
-const Application = mongoose_1.default.model('Application', applicationSchema);
-module.exports = Application;
+var Application = mongoose.model('Application', applicationSchema);
+export default Application;
