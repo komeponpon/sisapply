@@ -17,6 +17,11 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
-    "next": "^14.1.4"
+    "@types/axios": "^0.14.0",
+    "@types/react-dropzone": "^5.1.0",
+    "axios": "^1.6.8",
+    "next": "^14.1.4",
+    "react-dropzone": "^14.2.3",
+    "react-toastify": "^10.0.5"
   }
 }
