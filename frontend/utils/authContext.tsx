@@ -1,7 +1,6 @@
-import exp from "constants";
 import React, { createContext, useContext, useState } from "react";
 
-interface User {
+export interface User {
   email: string;
 }
 

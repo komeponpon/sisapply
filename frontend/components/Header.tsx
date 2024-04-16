@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {useAuth} from '../utils/authContext'
+import {User} from '../utils/authContext'
 
 interface HeaderProps {
   user: User | null;
