@@ -1,28 +1,28 @@
+import { Router, useRouter } from "next/router";
 import apiClient from "./apiClient";
 
 export interface User {
-  id: string;
-  email: string;
+  loginId: string;
   role: 'admin' | 'user';
 }
 
-export const login = async (email: string, password: string): Promise<string> => {
+export const login = async (loginId: string, password: string) => {
   try {
-    const response = await apiClient.post('/api/login',{ email, password });
-    const { token, user } = response.data;
+    const response = await apiClient.post('/api/login',{ loginId, password });
+    const { token } = response.data;
     //　ユーザ情報を保存
-    localStorage.setItem('user',JSON.stringify(user));
+    localStorage.setItem('token', token);
     return token;
   } catch (error) {
-    throw new Error('メールアドレスまたはパスワードが無効です')
+    console.error('ログインエラー',error);
+    throw new Error('ログインに失敗しました');
   }
 };
 
 export const logout = async (): Promise<void> => {
   try{
-    await apiClient.post('/api/logout');
     //　ユーザー情報を削除
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
   } catch (error) {
     console.error('ログアウトエラー:', error);
   }
