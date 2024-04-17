@@ -1,5 +1,5 @@
 var config = {
-    mongoURI: 'mongodb://host.docker.internal:27017/sisapply',
+    mongoURI: 'mongodb://sisapply-mongo-1:27017',
     jwtSecret: 'mysecretkey',
     emailHost: 'smtp.example.com',
     emailPort: 587,

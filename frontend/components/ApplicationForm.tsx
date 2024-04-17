@@ -21,7 +21,7 @@ export default function ApplicationForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await apiClient.post('/applications',formData);
+      await apiClient.post('/api/applications',formData);
     } catch (err) {
       console.error(err);
     }

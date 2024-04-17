@@ -8,7 +8,7 @@ export interface User {
 
 export const login = async (email: string, password: string): Promise<string> => {
   try {
-    const response = await apiClient.post('/auth/login',{ email, password });
+    const response = await apiClient.post('/api/login',{ email, password });
     const { token, user } = response.data;
     //　ユーザ情報を保存
     localStorage.setItem('user',JSON.stringify(user));
@@ -20,7 +20,7 @@ export const login = async (email: string, password: string): Promise<string> =>
 
 export const logout = async (): Promise<void> => {
   try{
-    await apiClient.post('/auth/logout');
+    await apiClient.post('/api/logout');
     //　ユーザー情報を削除
     localStorage.removeItem('user');
   } catch (error) {
