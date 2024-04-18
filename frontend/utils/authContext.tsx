@@ -1,29 +1,36 @@
 import React, { createContext, useContext, useState } from "react";
+import { login as loginUser } from "../utils/authUtils";
 
-// User インターフェースの更新
 export interface User {
-  loginId: string; // id から loginId へ変更
+  loginId: string;
+  companyName?: string; // companyName をオプショナルで追加
 }
 
 interface AuthContextValue {
   user: User | null;
-  login: (loginId: string, password: string) => Promise<void>; // 引数の変更
+  login: (loginId: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode}> = ({
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = async (loginId: string, password: string) => { // 引数の変更
-    const user = { loginId }; // キーの変更
-    setUser(user);
+  const login = async (loginId: string, password: string) => {
+    try {
+      const { token, companyName } = await loginUser(loginId, password); // authUtils からレスポンスを取得
+      localStorage.setItem('token', token);
+      setUser({ loginId, companyName }); // user 状態を更新
+    } catch (error) {
+      throw new Error('ログインに失敗しました');
+    }
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
     setUser(null);
   };
 

@@ -11,14 +11,14 @@ const seedCompany = async () => {
     await Company.deleteMany({});
 
     // パスワードのハッシュ化
-    const hashedPassword = await bcrypt.hash('yourPassword123', 10);
+    const hashedPassword = await bcrypt.hash('password', 10);
 
     // Company ドキュメントの作成
     const company = new Company({
       id: "company1",
       companyName: "Example Company",
       mailAddress: "contact@example.com",
-      loginId: "company_login",
+      loginId: "tscompany",
       password: hashedPassword, // ハッシュ化されたパスワード
       role: "admin",
     });

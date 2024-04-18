@@ -52,14 +52,14 @@ var seedCompany = function () { return __awaiter(void 0, void 0, void 0, functio
             case 2:
                 // 既存のデータを削除
                 _a.sent();
-                return [4 /*yield*/, bcrypt.hash('yourPassword123', 10)];
+                return [4 /*yield*/, bcrypt.hash('password', 10)];
             case 3:
                 hashedPassword = _a.sent();
                 company = new Company({
                     id: "company1",
                     companyName: "Example Company",
                     mailAddress: "contact@example.com",
-                    loginId: "company_login",
+                    loginId: "tscompany",
                     password: hashedPassword, // ハッシュ化されたパスワード
                     role: "admin",
                 });

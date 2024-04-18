@@ -62,7 +62,7 @@ router.post('/login', function (req, res) { return __awaiter(void 0, void 0, voi
                     return [2 /*return*/, res.status(401).json({ message: '認証情報が無効です' })];
                 }
                 token = jwt.sign({ companyId: company.id, role: company.role }, config.jwtSecret, { expiresIn: '1h' });
-                res.json({ token: token });
+                res.json({ token: token, companyName: company.companyName });
                 return [3 /*break*/, 5];
             case 4:
                 error_1 = _b.sent();

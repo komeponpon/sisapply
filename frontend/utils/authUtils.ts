@@ -1,4 +1,3 @@
-import { Router, useRouter } from "next/router";
 import apiClient from "./apiClient";
 
 export interface User {
@@ -6,18 +5,21 @@ export interface User {
   role: 'admin' | 'user';
 }
 
+// authUtils.ts の login 関数
 export const login = async (loginId: string, password: string) => {
   try {
     const response = await apiClient.post('/api/login',{ loginId, password });
-    const { token } = response.data;
-    //　ユーザ情報を保存
+    console.log(response);
+    const { token, companyName } = response.data;
     localStorage.setItem('token', token);
-    return token;
+    localStorage.setItem('companyName', companyName); // companyName も保存
+    return { token, companyName }; // companyName を含むオブジェクトを返す
   } catch (error) {
     console.error('ログインエラー',error);
     throw new Error('ログインに失敗しました');
   }
 };
+
 
 export const logout = async (): Promise<void> => {
   try{

@@ -10,9 +10,7 @@ export default function LoginForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const token = await login (loginId, password);
-      //　トークンを保存しダッシュボードへリダイレクト
-      localStorage.setItem('token', token);
+      await login (loginId, password);
       router.push('/dashboard');
     } catch (err){
       console.error(err);
@@ -24,16 +22,18 @@ export default function LoginForm() {
       <h1>ログイン</h1>
       <form onSubmit={handleSubmit}>
         <input
-          type="id"
+          type="text"
           value={loginId}
           onChange={(e) => setLoginId(e.target.value)}
           placeholder="ログインID"
+          autoComplete="username"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="パスワード"
+          autoComplete="current-password"
         />
         <button type="submit">ログイン</button>
       </form>

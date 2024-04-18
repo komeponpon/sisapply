@@ -22,7 +22,7 @@ export default function Dashboard() {
     <div>
       <Header user={user} logout={logout} />
       <h1>ダッシュボード</h1>
-      <p>ごきげんよう,{user.id}!</p>
+      <p>こんにちは！{user.companyName}!</p>
     </div>
   );
 }
