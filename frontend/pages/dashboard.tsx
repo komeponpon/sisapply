@@ -2,17 +2,17 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "../utils/authContext";
 import Header from "../components/Header";
-import { logout } from "../utils/authUtils";
 
 export default function Dashboard() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
-    if(!user) {
+    const token = localStorage.getItem('token');
+    if (!token && !user) {
       router.replace('/login');
     }
-  },[user, router]);
+  }, [router, user]); // user を依存配列に追加
 
   if (!user) {
     return null;

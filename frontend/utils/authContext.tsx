@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { login as loginUser } from "../utils/authUtils";
 
 export interface User {
@@ -14,10 +14,18 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    // ローカルストレージからログイン情報を読み込む
+    const token = localStorage.getItem('token');
+    const companyName = localStorage.getItem('companyName'); // companyName も保存されていると仮定
+    if (token && companyName) {
+      // トークンと会社名が存在する場合、user 状態を更新
+      setUser({ loginId: '', companyName });
+    }
+  }, []);
 
   const login = async (loginId: string, password: string) => {
     try {
