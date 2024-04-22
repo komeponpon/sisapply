@@ -17,6 +17,11 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fontsource/inter": "^5.0.18",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/joy": "^5.0.0-beta.32",
     "@types/axios": "^0.14.0",
     "@types/react-dropzone": "^5.1.0",
     "axios": "^1.6.8",
