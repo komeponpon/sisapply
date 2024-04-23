@@ -16,6 +16,8 @@ import Stack from '@mui/joy/Stack';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GoogleIcon from '../components/GoogleIcon';
+import Image from 'next/image';
+import { DarkMode, Mode } from '@mui/icons-material';
 
 interface FormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -47,6 +49,19 @@ function ColorSchemeToggle(props: IconButtonProps) {
     >
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
+  );
+}
+
+function WithColorScheme() {
+  const { mode } = useColorScheme();
+  return (
+    <Image
+                src="/images/logo_black_0.png"
+                alt="ロゴ"
+                width={157}
+                height={21.1}
+                style={{ filter: mode === 'dark' ? 'invert(100%)' : 'none' }}
+              />
   );
 }
 
@@ -96,7 +111,7 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ gap: 2, display: 'flex', alignItems: 'center' }}>
-              <Typography level="title-lg">Company logo</Typography>
+              <WithColorScheme/>
             </Box>
             <ColorSchemeToggle />
           </Box>
