@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { login } from '../utils/authUtils'; // これはあなたのauthUtilsからのlogin関数を引き続き使用します
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
-import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
-import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
+import Link from 'next/link';
+import Checkbox from '@mui/joy/Checkbox';
 
-export default function LoginFormWithJoy() {
+export default function LoginForm() {
   const router = useRouter();
   const [loginId, setLoginId] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -27,14 +26,7 @@ export default function LoginFormWithJoy() {
   };
 
   return (
-    <CssVarsProvider>
-      <CssBaseline />
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-        <Box component="form" onSubmit={handleSubmit} sx={{ width: 300 }}>
-          <Stack spacing={2}>
-            <Typography level="h4" component="h1">
-              ログイン
-            </Typography>
+        <Box component="form" onSubmit={handleSubmit}>
             <FormControl>
               <FormLabel htmlFor="loginId">ログインID</FormLabel>
               <Input
@@ -55,12 +47,20 @@ export default function LoginFormWithJoy() {
                 autoComplete="current-password"
               />
             </FormControl>
-            <Button type="submit" variant="solid" fullWidth>
-              ログイン
-            </Button>
-          </Stack>
+            <Stack gap={4} sx={{ mt: 2 }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Checkbox size="sm" label="パスワードを保存する" name="persistent" />
+                  </Box>
+                  <Button type="submit" fullWidth>
+                    ログイン
+                  </Button>
+                </Stack>
         </Box>
-      </Box>
-    </CssVarsProvider>
   );
 }

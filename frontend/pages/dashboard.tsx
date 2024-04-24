@@ -13,7 +13,7 @@ import OrderTable from '../components/OrderTable';
 import OrderList from '../components/OrderList';
 import Header from '../components/Header';
 
-export default function JoyOrderDashboardTemplate() {
+export default function Dashboard() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />

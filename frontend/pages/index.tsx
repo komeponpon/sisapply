@@ -17,7 +17,7 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GoogleIcon from '../components/GoogleIcon';
 import Image from 'next/image';
-import { DarkMode, Mode } from '@mui/icons-material';
+import LoginForm from '../components/LoginForm';
 
 interface FormElements extends HTMLFormControlsCollection {
   email: HTMLInputElement;
@@ -168,46 +168,7 @@ export default function HomePage() {
             >
               or
             </Divider>
-            <Stack gap={4} sx={{ mt: 2 }}>
-              <form
-                onSubmit={(event: React.FormEvent<SignInFormElement>) => {
-                  event.preventDefault();
-                  const formElements = event.currentTarget.elements;
-                  const data = {
-                    email: formElements.email.value,
-                    password: formElements.password.value,
-                    persistent: formElements.persistent.checked,
-                  };
-                  alert(JSON.stringify(data, null, 2));
-                }}
-              >
-                <FormControl required>
-                  <FormLabel>メールアドレス</FormLabel>
-                  <Input type="email" name="email" />
-                </FormControl>
-                <FormControl required>
-                  <FormLabel>パスワード</FormLabel>
-                  <Input type="password" name="password" />
-                </FormControl>
-                <Stack gap={4} sx={{ mt: 2 }}>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Checkbox size="sm" label="パスワードを保存する" name="persistent" />
-                    <Link level="title-sm" href="#replace-with-a-link">
-                      パスワードを忘れた
-                    </Link>
-                  </Box>
-                  <Button type="submit" fullWidth>
-                    ログイン
-                  </Button>
-                </Stack>
-              </form>
-            </Stack>
+            <LoginForm/>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>
             <Typography level="body-xs" textAlign="center">
