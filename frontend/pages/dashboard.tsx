@@ -1,19 +1,34 @@
 import * as React from 'react';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useAuth } from "../utils/authContext";
 import { CssVarsProvider } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Typography from '@mui/joy/Typography';
-
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
-
 import Sidebar from '../components/Sidebar';
 import OrderTable from '../components/OrderTable';
 import OrderList from '../components/OrderList';
 import Header from '../components/Header';
 
 export default function Dashboard() {
+  const router = useRouter();
+  const { user, logout } = useAuth();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      router.replace('/');
+    }
+  }, [router]);
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
@@ -59,7 +74,7 @@ export default function Dashboard() {
             }}
           >
             <Typography level="h2" component="h1">
-              申請一覧
+              案件一覧
             </Typography>
             <Button
               color="primary"

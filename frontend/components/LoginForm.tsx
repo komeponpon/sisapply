@@ -7,7 +7,6 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Stack from '@mui/joy/Stack';
-import Link from 'next/link';
 import Checkbox from '@mui/joy/Checkbox';
 
 export default function LoginForm() {

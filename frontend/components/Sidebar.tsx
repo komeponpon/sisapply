@@ -1,37 +1,24 @@
 import * as React from 'react';
 import GlobalStyles from '@mui/joy/GlobalStyles';
-import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Card from '@mui/joy/Card';
-import Chip from '@mui/joy/Chip';
 import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
-import Input from '@mui/joy/Input';
-import LinearProgress from '@mui/joy/LinearProgress';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import Stack from '@mui/joy/Stack';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
-import QuestionAnswerRoundedIcon from '@mui/icons-material/QuestionAnswerRounded';
-import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
-import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import UploadFileRoundedIcon  from '@mui/icons-material/UploadFileRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import BrightnessAutoRoundedIcon from '@mui/icons-material/BrightnessAutoRounded';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ListRoundedIcon from '@mui/icons-material/ListRounded';
 
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils/utils'
+import { logout } from '../utils/authUtils';
+import { useRouter } from 'next/router';
 
 function Toggler({
   defaultExpanded = false,
@@ -66,6 +53,16 @@ function Toggler({
 }
 
 export default function Sidebar() {
+  const router = useRouter();  // useRouter フックを使用
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      router.push('/');  // '/' へリダイレクト
+    } catch (error) {
+      console.error('ログアウトエラー:', error);
+    }
+  };
   return (
     <Sheet
       className="Sidebar"
@@ -153,18 +150,9 @@ export default function Sidebar() {
 
           <ListItem>
             <ListItemButton>
-              <DashboardRoundedIcon />
+              <UploadFileRoundedIcon />
               <ListItemContent>
-                <Typography level="title-sm">ダッシュボード</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem>
-            <ListItemButton selected>
-              <ShoppingCartRoundedIcon />
-              <ListItemContent>
-                <Typography level="title-sm">注文</Typography>
+                <Typography level="title-sm">新規登録</Typography>
               </ListItemContent>
             </ListItemButton>
           </ListItem>
@@ -173,9 +161,9 @@ export default function Sidebar() {
             <Toggler
               renderToggle={({ open, setOpen }) => (
                 <ListItemButton onClick={() => setOpen(!open)}>
-                  <AssignmentRoundedIcon />
+                  <ListRoundedIcon />
                   <ListItemContent>
-                    <Typography level="title-sm">タスク</Typography>
+                    <Typography level="title-sm">案件一覧</Typography>
                   </ListItemContent>
                   <KeyboardArrowDownIcon
                     sx={{ transform: open ? 'rotate(180deg)' : 'none' }}
@@ -185,16 +173,16 @@ export default function Sidebar() {
             >
               <List sx={{ gap: 0.5 }}>
                 <ListItem sx={{ mt: 0.5 }}>
-                  <ListItemButton>All tasks</ListItemButton>
+                  <ListItemButton>全ての案件</ListItemButton>
                 </ListItem>
                 <ListItem>
-                  <ListItemButton>Backlog</ListItemButton>
+                  <ListItemButton>差し戻し中</ListItemButton>
                 </ListItem>
                 <ListItem>
-                  <ListItemButton>In progress</ListItemButton>
+                  <ListItemButton>対応中</ListItemButton>
                 </ListItem>
                 <ListItem>
-                  <ListItemButton>Done</ListItemButton>
+                  <ListItemButton>対応完了</ListItemButton>
                 </ListItem>
               </List>
             </Toggler>
@@ -204,10 +192,15 @@ export default function Sidebar() {
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography level="title-sm">Siriwat K.</Typography>
-          <Typography level="body-xs">siriwatk@test.com</Typography>
+          <Typography level="title-sm">田中１郎</Typography>
+          <Typography level="body-xs">sample@example.com</Typography>
         </Box>
-        <IconButton size="sm" variant="plain" color="neutral">
+        <IconButton
+          size="sm"
+          variant="plain"
+          color="neutral"
+          onClick={handleLogout}
+        >
           <LogoutRoundedIcon />
         </IconButton>
       </Box>
