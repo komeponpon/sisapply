@@ -16,7 +16,7 @@ import Header from '../components/Header';
 
 export default function Dashboard() {
   const router = useRouter();
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     const token = localStorage.getItem('token');

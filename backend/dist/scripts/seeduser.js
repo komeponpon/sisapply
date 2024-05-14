@@ -57,7 +57,7 @@ var seedCompany = function () { return __awaiter(void 0, void 0, void 0, functio
                 hashedPassword = _a.sent();
                 company = new Company({
                     id: "company1",
-                    companyName: "Example Company",
+                    companyName: "参考ホーム株式会社 ",
                     mailAddress: "contact@example.com",
                     loginId: "tscompany",
                     password: hashedPassword, // ハッシュ化されたパスワード

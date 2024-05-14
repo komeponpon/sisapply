@@ -16,7 +16,7 @@ const seedCompany = async () => {
     // Company ドキュメントの作成
     const company = new Company({
       id: "company1",
-      companyName: "Example Company",
+      companyName: "参考ホーム株式会社 ",
       mailAddress: "contact@example.com",
       loginId: "tscompany",
       password: hashedPassword, // ハッシュ化されたパスワード

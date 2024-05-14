@@ -17,8 +17,8 @@ import ListRoundedIcon from '@mui/icons-material/ListRounded';
 
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils/utils'
-import { logout } from '../utils/authUtils';
 import { useRouter } from 'next/router';
+import { useAuth } from '../utils/authContext'
 
 function Toggler({
   defaultExpanded = false,
@@ -54,6 +54,7 @@ function Toggler({
 
 export default function Sidebar() {
   const router = useRouter();  // useRouter フックを使用
+  const { user, logout } = useAuth(); 
 
   const handleLogout = async () => {
     try {
@@ -116,7 +117,7 @@ export default function Sidebar() {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <Typography level="title-lg">参考ホーム株式会社</Typography>
+        <Typography level="title-lg">{user?.companyName || 'none'}</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
       <Box
@@ -192,8 +193,8 @@ export default function Sidebar() {
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography level="title-sm">田中１郎</Typography>
-          <Typography level="body-xs">sample@example.com</Typography>
+          <Typography level="title-sm">{user?.loginId || 'none'}</Typography>
+          <Typography level="body-xs">アドレスをuserに加える</Typography>
         </Box>
         <IconButton
           size="sm"
