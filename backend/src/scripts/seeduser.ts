@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; // ここをbcryptからbcryptjsに変更
 import Company from "../models/Company.js";
 import config from "../config/config.js";
 

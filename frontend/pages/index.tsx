@@ -126,17 +126,17 @@ export default function HomePage() {
               },
             }}
           >
-            <Stack gap={4} sx={{ mb: 2 }}>
+            {/*<Stack gap={4} sx={{ mb: 2 }}>
               <Stack gap={1}>
                 <Typography component="h1" level="h3">
                   ログイン
                 </Typography>
-                <Typography level="body-sm">
+                  <Typography level="body-sm">
                   初めてですか？{' '}
                   <Link href="#replace-with-a-link" level="title-sm">
                     サインアップ
                   </Link>
-                </Typography>
+              </Typography>
               </Stack>
               <Button
                 variant="soft"
@@ -155,7 +155,7 @@ export default function HomePage() {
               })}
             >
               or
-            </Divider>
+            </Divider>*/}
             <LoginForm/>
           </Box>
           <Box component="footer" sx={{ py: 3 }}>

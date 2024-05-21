@@ -117,7 +117,7 @@ export default function Sidebar() {
         onClick={() => closeSidebar()}
       />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-        <Typography level="title-lg">{user?.companyName || 'none'}</Typography>
+        <Typography level="title-lg">申請管理システム</Typography>
         <ColorSchemeToggle sx={{ ml: 'auto' }} />
       </Box>
       <Box
@@ -193,8 +193,7 @@ export default function Sidebar() {
       <Divider />
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography level="title-sm">{user?.loginId || 'none'}</Typography>
-          <Typography level="body-xs">アドレスをuserに加える</Typography>
+          <Typography level="title-sm">{user?.companyName || 'none'}</Typography>
         </Box>
         <IconButton
           size="sm"
